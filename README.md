@@ -25,7 +25,7 @@ CREATE TABLE `dept` (<br>
 	<br>
 ## 注意问题（非常重要）：
 第一：那个服务被监控，则需要加入这个依赖
-<!-- actuator监控信息完善 --><br>
+actuator监控信息完善
 <dependency><br>
 <groupId>org.springframework.boot</groupId><br>
 <artifactId>spring-boot-starter-actuator</artifactId><br>

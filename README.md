@@ -23,6 +23,16 @@ CREATE TABLE `dept` (<br>
 	其中microservicecloud为所有服模块的父工程，microservicecloud-api是公共模块<br>
 	其他微服务不用管<br>
 	<br>
+## 注意问题（非常重要）：
+第一：那个服务被监控，则需要加入这个依赖
+<!-- actuator监控信息完善 --><br>
+<dependency><br>
+<groupId>org.springframework.boot</groupId><br>
+<artifactId>spring-boot-starter-actuator</artifactId><br>
+</dependency><br>
+
+第二：springcloud2.0以后xxx/hystrix.stream以后没反应，需要再被监控的服务中配置servletl来拦截/hystrix.stream<br/>
+参考网址：https://blog.csdn.net/ddxd0406/article/details/79643059
 ## 结果呈现：
 	访问:<br>
     先访问数据库中有数据id：http://localhost:8001/dept/get/id   如http://localhost:8001/dept/get/1<br>
@@ -31,5 +41,5 @@ CREATE TABLE `dept` (<br>
     访问每个被监控的服务ping数据：（这里开启的被监控的是microservicecloud-provider-dept-hystrix-8001）<br>
       既访问->http://localhost:8001/hystrix.stream<br>
     再 访问hystrix服务监控：http://localhost:9001/hystrix中输入http://localhost:8001/hystrix.stream,Delay与titile选项随便填写,<br>
-    点击按钮,就进去到microservicecloud-provider-dept-hystrix-8001这个微服务的服务监控界面上去了！
+    点击按钮,就进去到microservicecloud-provider-dept-hystrix-8001这个微服务的服务监控界面上去了！<br>
 	eureka服务注册中心：http://eureka7001.com:7001、http://eureka7002.com:7002、http://eureka7003.com:7003<br>
